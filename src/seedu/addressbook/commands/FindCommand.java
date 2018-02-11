@@ -17,7 +17,7 @@ public class FindCommand extends Command {
     public static final String COMMAND_WORD = "find";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain any of "
-            + "the specified keywords (case-sensitive) and displays them as a list with index numbers.\n"
+            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " alice bob charlie";
 
@@ -50,11 +50,33 @@ public class FindCommand extends Command {
         final List<ReadOnlyPerson> matchedPersons = new ArrayList<>();
         for (ReadOnlyPerson person : addressBook.getAllPersons()) {
             final Set<String> wordsInName = new HashSet<>(person.getName().getWordsInName());
-            if (!Collections.disjoint(wordsInName, keywords)) {
+            if (hasIntersection(wordsInName, keywords)) {
                 matchedPersons.add(person);
             }
         }
         return matchedPersons;
+    }
+
+    /**
+     * Compares two sets of strings for intersection case insensitively
+     *
+     * @param set1 the first set
+     * @param set2 the second set against which the first is compared
+     * @return whether an intersection exists or not
+     */
+    private static boolean hasIntersection(Set<String> set1, Set<String> set2)
+    {
+        final Set<String> lowerCaseSet1 = new HashSet<>();
+        final Set<String> lowerCaseSet2 = new HashSet<>();
+
+        for (String s : set1) {
+            lowerCaseSet1.add(s.toLowerCase());
+        }
+        for (String s : set2) {
+            lowerCaseSet2.add(s.toLowerCase());
+        }
+
+        return !Collections.disjoint(lowerCaseSet1, lowerCaseSet2);
     }
 
 }
