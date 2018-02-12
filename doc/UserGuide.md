@@ -112,7 +112,7 @@ Examples:
   Views all details of the 1st person in the results of the `find` command.
 
 ### Clearing all entries : `clear`
-Clears all entries from the address book.<br>
+Clears all entries from the address book. Also lists all deleted entries after deletion so that the information may be recovered if necessary<br>
 Format: `clear`  
 
 #### Exiting the program : `exit`

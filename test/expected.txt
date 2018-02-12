@@ -40,7 +40,9 @@
 || The person index provided is invalid
 || ===================================================
 || Enter command: || [Command entered:  clear]
+|| 
 || Address book has been cleared!
+|| The persons listed above have been deleted.
 || ===================================================
 || Enter command: || [Command entered:  list]
 || 
@@ -291,7 +293,11 @@
 || 2 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  clear]
+|| 	1. Betsy Choo Tags: [secretive]
+|| 	2. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
+|| 
 || Address book has been cleared!
+|| The persons listed above have been deleted.
 || ===================================================
 || Enter command: || [Command entered:  list]
 || 

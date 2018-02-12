@@ -1,5 +1,8 @@
 package seedu.addressbook.commands;
 
+import seedu.addressbook.data.person.ReadOnlyPerson;
+import java.util.List;
+
 /**
  * Clears the address book.
  */
@@ -9,14 +12,16 @@ public class ClearCommand extends Command {
     public static final String MESSAGE_USAGE = "Clears address book permanently.\n"
             + "Example: " + COMMAND_WORD;
 
-    public static final String MESSAGE_SUCCESS = "Address book has been cleared!";
+    public static final String MESSAGE_SUCCESS = "Address book has been cleared!\n"
+            + "The persons listed above have been deleted.";
 
     public ClearCommand() {}
 
 
     @Override
     public CommandResult execute() {
+        List<ReadOnlyPerson> allPersons = addressBook.getAllPersons().immutableListView();
         addressBook.clear();
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(MESSAGE_SUCCESS, allPersons);
     }
 }
